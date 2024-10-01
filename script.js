@@ -191,7 +191,7 @@ function start() {
     document.querySelector("#account").innerHTML = account;
 
     const buttonCopy = document.querySelector('#copy-account-btn');
-    let accountList = document.querySelector("#account").textContent;
+    let accountList = localStorage.getItem("accounts");;
     buttonCopy.onclick = function() {
         navigator.clipboard.writeText(accountList)
                 .then(() => {
