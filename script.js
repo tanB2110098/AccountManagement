@@ -185,6 +185,35 @@ function start() {
 
     let accountManagement = new AccountManagement(accounts);
     accountManagement.displayAccount();
+
+    // get account and display it 
+    let account = localStorage.getItem("accounts");
+    document.querySelector("#account").innerHTML = account;
+
+    const buttonCopy = document.querySelector('#copy-account-btn');
+    let accountList = document.querySelector("#account").textContent;
+    buttonCopy.onclick = function() {
+        navigator.clipboard.writeText(accountList)
+                .then(() => {
+                    console.log("JSON copied to clipboard");
+                })
+                .catch(err => {
+                    console.error("Failed to copy JSON: ", err);
+                });
+    }
 }
+
+// copy account
+function handleCopy(event) {
+    console.log("có vào đây")
+    // Modify the clipboard data
+    event.clipboardData.setData('text/plain', 'You just copied custom text!');
+    // Prevent the default copy action
+    event.preventDefault();
+    alert('Text copied!');
+}
+
+
+// end copy account
 
 start();
